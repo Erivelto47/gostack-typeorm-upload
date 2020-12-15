@@ -17,7 +17,7 @@ transactionsRouter.get('/', (request, response) => {
 
     return response.status(200).json({
       transactions: transactionsList,
-      balance: balance
+      balance,
     });
   } catch (err) {
     return response.status(400).json({ error: err.message });
@@ -30,7 +30,9 @@ transactionsRouter.post('/', (request, response) => {
 
     const createTransactionService = new CreateTransactionService();
 
-    return response.status(201).json(createTransactionService.execute(transaction));
+    return response
+      .status(201)
+      .json(createTransactionService.execute(transaction));
   } catch (err) {
     return response.status(400).json({ error: err.message });
   }
